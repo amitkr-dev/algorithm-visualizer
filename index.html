@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SortViz — Algorithm Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="logo">SORT<span>VIZ</span></div>
+    <div class="complexity-badge" id="complexity-badge">Select an algorithm</div>
+  </header>
+
+  <!-- ALGO SELECTOR -->
+  <div class="algo-row">
+    <button class="algo-btn active" data-algo="bubble" onclick="selectAlgo('bubble', this)">
+      Bubble Sort
+      <span class="algo-complexity">O(n²)</span>
+    </button>
+    <button class="algo-btn" data-algo="selection" onclick="selectAlgo('selection', this)">
+      Selection Sort
+      <span class="algo-complexity">O(n²)</span>
+    </button>
+    <button class="algo-btn" data-algo="merge" onclick="selectAlgo('merge', this)">
+      Merge Sort
+      <span class="algo-complexity">O(n log n)</span>
+    </button>
+  </div>
+
+  <!-- CANVAS -->
+  <div class="canvas-wrap">
+    <canvas id="canvas"></canvas>
+    <div class="canvas-overlay" id="done-overlay">SORTED!</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-label">Comparisons</div>
+      <div class="stat-val" id="stat-comparisons">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Swaps</div>
+      <div class="stat-val" id="stat-swaps">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Array Size</div>
+      <div class="stat-val" id="stat-size">40</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Status</div>
+      <div class="stat-val" id="stat-status" style="font-size:16px;padding-top:4px">Ready</div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+
+    <div class="ctrl-group">
+      <div class="ctrl-label">Array Size <span id="size-val">40</span></div>
+      <input type="range" id="size-slider" min="10" max="100" value="40" />
+    </div>
+
+    <div class="ctrl-group">
+      <div class="ctrl-label">Speed <span id="speed-val">Medium</span></div>
+      <input type="range" id="speed-slider" min="1" max="5" value="3" />
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-play" id="btn-play" onclick="startSort()">Play</button>
+      <button class="btn" id="btn-pause" onclick="pauseSort()" disabled>Pause</button>
+      <button class="btn" id="btn-reset" onclick="resetAll()">Reset</button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#38bdf8"></div>Unsorted</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Comparing</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f87171"></div>Swapping</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>Sorted</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>Pivot / Merging</div>
+    </div>
+
+  </div>
+
+  <!-- PSEUDOCODE -->
+  <div class="code-panel">
+    <div class="code-panel-header">Pseudocode</div>
+    <pre id="pseudocode"></pre>
+  </div>
+
+</div>
+
+<!-- JS file linked at bottom so HTML loads first -->
+<script src="script.js"></script>
+</body>
+</html>
